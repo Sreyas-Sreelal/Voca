@@ -9,10 +9,15 @@ def setup_voice(options):
 	voice_engine.setProperty('rate', options.get("speech_rate",150))
 	
 	voices = voice_engine.getProperty('voices')
-	if options.get("gender","male") == "female":
-		voice_engine.setProperty('voice', voices[1].id)
-	else:
-		voice_engine.setProperty('voice', voices[0].id)
+	try:
+		if options.get("gender","male") == "female":
+			gender = list(filter(lambda v:v.gender == "female",voices))[0]
+			voice_engine.setProperty('voice', gender.id)
+		else:
+			gender = list(filter(lambda v:v.gender == "male",voices))[0]
+			voice_engine.setProperty('voice', gender.id)
+	except IndexError:
+		print("Warning cannot set gender properly!")
 
 def voca_say(text):
 	try:
