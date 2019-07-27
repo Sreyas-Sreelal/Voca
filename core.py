@@ -1,4 +1,4 @@
-from recongnize import setup_recogniser,listen_and_understand
+from recognize import setup_recogniser,listen_and_understand
 from ai import setup_ai,generate_response
 from voice import setup_voice,voca_say
 from speech_recognition import UnknownValueError,RequestError 
