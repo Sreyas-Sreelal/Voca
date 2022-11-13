@@ -10,12 +10,9 @@ class Voice:
         voices = self.voice_engine.getProperty('voices')
         try:
             if options.get("gender", "male") == "female":
-                gender = list(
-                    filter(lambda v: v.gender == "female", voices))[0]
-                self.voice_engine.setProperty('voice', gender.id)
+                self.voice_engine.setProperty('voice', voices[1].id)
             else:
-                gender = list(filter(lambda v: v.gender == "male", voices))[0]
-                self.voice_engine.setProperty('voice', gender.id)
+                self.voice_engine.setProperty('voice', voices[0].id)
 
         except IndexError:
             print("Warning cannot set gender properly!")

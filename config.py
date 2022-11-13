@@ -1,6 +1,6 @@
 recongnise_options = {
     "API": "google",
-    "energy_threshold": False
+    "energy_threshold": True
 }
 
 voice_options = {
