@@ -2,7 +2,7 @@ import os
 import playsound
 import threading
 runner = None
-def execute(voca_say,listen_and_understand,heard=""):
+def execute(voca,voca_say,listen_and_understand,heard=""):
 	global runner
 	if heard == "":
 		voca_say("Ok tell me what you want to play")

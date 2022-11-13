@@ -15,6 +15,7 @@ class Core:
     def run(self):
         while True:
             try:
+                is_command = False
                 heard = self.recognizer.listen_and_understand().lower()
 
                 if "shutdown" in heard:
@@ -23,18 +24,19 @@ class Core:
 
                 for cmd in voca_commands.keys():
                     if heard.startswith(cmd):
+                        is_command = True
                         if heard.strip() == cmd:
                             print("hear")
-                            voca_commands[cmd].execute(
+                            voca_commands[cmd].execute(self,
                                 self.voice.emit, self.recognizer.listen_and_understand)
                         else:
                             print(heard[len(cmd):])
-                            voca_commands[cmd].execute(
+                            voca_commands[cmd].execute(self,
                                 self.voice.emit, self.recognizer.listen_and_understand, heard[len(cmd):])
                         continue
-
-                response = self.brain.generate_response(heard)
-                self.voice.emit(response)
+                if not is_command :        
+                    response = self.brain.generate_response(heard)
+                    self.voice.emit(response)
 
             except UnknownValueError:
                 #voca_say("What you mean  I dont really understood that")

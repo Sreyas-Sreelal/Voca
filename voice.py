@@ -24,3 +24,7 @@ class Voice:
         except Exception as e:
             print("Error cant emit sound : ", str(e))
             # stop_say()
+    def setgender(self,genderid):
+        voices = self.voice_engine.getProperty('voices')
+        self.voice_engine.setProperty('voice', voices[genderid].id)
+
